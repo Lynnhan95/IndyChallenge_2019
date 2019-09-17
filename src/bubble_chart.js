@@ -14,23 +14,23 @@ function bubbleChart() {
   var height = 600;
 
   // tooltip for mouseover functionality
-  var tooltip = floatingTooltip('gates_tooltip', 240);
+  var tooltip = floatingTooltip('gates_tooltip', 90);
 
   // Locations to move bubbles towards, depending
   // on which view mode is selected.
   var center = { x: width / 2, y: height / 2 };
 
   var yearCenters = {
-    2008: { x: width / 3, y: height / 2 },
-    2009: { x: width / 2, y: height / 2 },
-    2010: { x: 2 * width / 3, y: height / 2 }
+    "0-9.9": { x: width / 3, y: height / 2 },
+    "10-19.9": { x: width / 2, y: height / 2 },
+    "20-29.9": { x: 2 * width / 3, y: height / 2 }
   };
 
   // X locations of the year titles.
   var yearsTitleX = {
-    2008: 160,
-    2009: width / 2,
-    2010: width - 160
+    "0-9.9": 160,
+    "10-19.9": width / 2,
+    "20-29.9": width - 160
   };
 
   // Used when setting up force and
@@ -66,7 +66,6 @@ function bubbleChart() {
     .gravity(-0.01)
     .friction(0.9);
 
-
   // Nice looking colors - no reason to buck the trend
   var fillColor = d3.scale.ordinal()
     .domain(['low', 'medium', 'high'])
@@ -99,8 +98,7 @@ function bubbleChart() {
         id: d.id,
         radius: radiusScale(+d.total_amount),
         value: d.total_amount,
-        name: d.grant_title,
-        // org: d.organization,
+        name: d.county_name,
         group: d.group,
         year: d.year,
         x: Math.random() * 900,
@@ -155,11 +153,13 @@ function bubbleChart() {
     bubbles.enter().append('circle')
       .classed('bubble', true)
       .attr('r', 0)
+      .attr('id',function(d){return d.name})
       .attr('fill', function (d) { return fillColor(d.group); })
       .attr('opacity', 0.8)
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
       .attr('stroke-width', 2)
       .on('mouseover', showDetail)
+      .on('click', showID)
       .on('mouseout', hideDetail);
 
     // Fancy transition to make bubbles appear, ending with the
@@ -282,15 +282,24 @@ function bubbleChart() {
    */
   function showDetail(d) {
     // change outline to indicate hover state.
-    d3.select(this).attr('stroke', 'black');
-
-    var content = '<span class="name">Population: </span><span class="value">' +
+    d3.select(this).attr('stroke', 'black')
+                   .style('cursor','pointer')
+    
+    var content = '<span class="name">County: </span><span class="value">' +
+                  d.name+
+                  '</span><br>' 
+                  +'<span class="name">Population: </span><span class="value">' +
                   addCommas(d.value) +
-                  '</span><br/>' +
+                  '</span><br>' +
                   '<span class="name">Year: </span><span class="value">' +
                   d.year +
-                  '</span>';
+                  '</span><br>';
     tooltip.showTooltip(content, d3.event);
+  }
+
+  function showID(d){
+    const selectedNode = d3.select(this)
+    console.log(selectedNode[0][0].id)
   }
 
   /*
