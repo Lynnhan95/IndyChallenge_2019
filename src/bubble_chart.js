@@ -10,11 +10,11 @@
  */
 function bubbleChart() {
   // Constants for sizing
-  var width = 940;
+  var width = 900;
   var height = 600;
 
   // tooltip for mouseover functionality
-  var tooltip = floatingTooltip('gates_tooltip', 90);
+  var tooltip = floatingTooltip('gates_tooltip', 100);
 
   // Locations to move bubbles towards, depending
   // on which view mode is selected.
@@ -69,7 +69,7 @@ function bubbleChart() {
   // Nice looking colors - no reason to buck the trend
   var fillColor = d3.scale.ordinal()
     .domain(['low', 'medium', 'high'])
-    .range(['#d84b2a', '#beccae', '#7aa25c']);
+    .range(['#d84b2a', '#FFD26A', '#A8BD63']);
 
   // Sizes bubbles based on their area instead of raw radius
   var radiusScale = d3.scale.pow()
@@ -155,7 +155,7 @@ function bubbleChart() {
       .attr('r', 0)
       .attr('id',function(d){return d.name})
       .attr('fill', function (d) { return fillColor(d.group); })
-      .attr('opacity', 0.8)
+      .attr('opacity', 0.75)
       .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
       .attr('stroke-width', 2)
       .on('mouseover', showDetail)
@@ -295,6 +295,10 @@ function bubbleChart() {
                   d.year +
                   '</span><br>';
     tooltip.showTooltip(content, d3.event);
+
+    //show ID
+    const selectedNode = d3.select(this)
+    console.log(selectedNode[0][0].id)
   }
 
   function showID(d){
