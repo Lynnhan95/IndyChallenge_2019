@@ -11,7 +11,7 @@
 function bubbleChart() {
   // Constants for sizing
   var width = 900;
-  var height = 600;
+  var height = 540;
 
   // tooltip for mouseover functionality
   var tooltip = floatingTooltip('gates_tooltip', 100);
@@ -20,18 +20,19 @@ function bubbleChart() {
   // on which view mode is selected.
   var center = { x: width / 2, y: height / 2 };
 
-  var yearCenters = {
-    "0-9.9": { x: width / 3, y: height / 2 },
-    "10-19.9": { x: width / 2, y: height / 2 },
-    "20-29.9": { x: 2 * width / 3, y: height / 2 }
-  };
 
-  // X locations of the year titles.
-  var yearsTitleX = {
-    "0-9.9": 160,
-    "10-19.9": width / 2,
-    "20-29.9": width - 160
-  };
+    var yearCenters = {
+      "0-9.9": { x: width / 3, y: height / 2 },
+      "10-19.9": { x: width / 2, y: height / 2 },
+      "20-29.9": { x: 2 * width / 3, y: height / 2 }
+    };
+  
+    // X locations of the year titles.
+    var yearsTitleX = {
+      "0-9.9": 160,
+      "10-19.9": width / 2,
+      "20-29.9": width - 160
+    };
 
   // Used when setting up force and
   // moving around nodes
@@ -69,7 +70,7 @@ function bubbleChart() {
   // Nice looking colors - no reason to buck the trend
   var fillColor = d3.scale.ordinal()
     .domain(['low', 'medium', 'high'])
-    .range(['#d84b2a', '#FFD26A', '#A8BD63']);
+    .range(['#A8BD63', '#FFD26A', '#d84b2a',]);
 
   // Sizes bubbles based on their area instead of raw radius
   var radiusScale = d3.scale.pow()
@@ -100,7 +101,7 @@ function bubbleChart() {
         value: d.total_amount,
         name: d.county_name,
         group: d.group,
-        year: d.year,
+        category: d.category,
         x: Math.random() * 900,
         y: Math.random() * 800
       };
@@ -245,7 +246,7 @@ function bubbleChart() {
    */
   function moveToYears(alpha) {
     return function (d) {
-      var target = yearCenters[d.year];
+      var target = yearCenters[d.category];
       d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
       d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
     };
@@ -291,8 +292,11 @@ function bubbleChart() {
                   +'<span class="name">Population: </span><span class="value">' +
                   addCommas(d.value) +
                   '</span><br>' +
-                  '<span class="name">Year: </span><span class="value">' +
-                  d.year +
+                  '<span class="name">Percentage: </span><span class="value">' +
+                  d.category +
+                  '</span><br>'
+                  +'<span class="name">Educational Level: </span><span class="value">' +
+                  d.group +
                   '</span><br>';
     tooltip.showTooltip(content, d3.event);
 
@@ -332,7 +336,6 @@ function bubbleChart() {
     }
   };
 
-
   // return the chart function from closure.
   return chart;
 }
@@ -344,6 +347,7 @@ function bubbleChart() {
 
 var myBubbleChart = bubbleChart();
 
+
 /*
  * Function called once data is loaded from CSV.
  * Calls bubble chart function to display inside #vis div.
@@ -353,18 +357,20 @@ function display(error, data) {
     console.log(error);
   }
 
-  myBubbleChart('#vis', data);
+  myBubbleChart('#vis1', data);
+  // myBubbleChart2('#vis2', data);
 }
+
 
 /*
  * Sets up the layout buttons to allow for toggling between view modes.
  */
-function setupButtons() {
+function setupButtons1() {
   d3.select('#toolbar')
-    .selectAll('.button')
+    .selectAll('.button1')
     .on('click', function () {
       // Remove active class from all buttons
-      d3.selectAll('.button').classed('active', false);
+      d3.selectAll('.button1').classed('active', false);
       // Find the button just clicked
       var button = d3.select(this);
 
@@ -380,6 +386,8 @@ function setupButtons() {
     });
 }
 
+
+
 /*
  * Helper function to convert a number into a string
  * and add commas to it to improve presentation.
@@ -393,12 +401,14 @@ function addCommas(nStr) {
   while (rgx.test(x1)) {
     x1 = x1.replace(rgx, '$1' + ',' + '$2');
   }
-
   return x1 + x2;
 }
 
 // Load the data.
 d3.csv('data/indiana_data.csv', display);
 
+
 // setup the buttons.
-setupButtons();
+setupButtons1();
+
+

@@ -12,18 +12,42 @@
 </head>
 <body>
   <div class="container">
-    <h1>Indiana Poverty Status</h1>
-    <div id="toolbar">
-      <a href="#" id="all" class="button active">All population</a>
-      <a href="#" id="year" class="button">Population by Poverty Level</a>
+  <div class="container1">
+    <div class="dashboard" id="dashboard1">
+      <h1>Indiana Poverty Status</h1>
+      <div id="toolbar">
+        <a href="#" id="all" class="Button button1 active">All population</a>
+        <a href="#" id="year" class="Button button1">Population by Poverty Level (%)</a>
+      </div>
+      <div id="vis1"></div>
     </div>
-    <div id="vis"></div>
 
+    <div class="dashboard" id="dashbaord2">
+        <h1>Indiana High Educational Status</h1>
+        <div id="toolbar2">
+          <a href="#" id="all" class="Button button2 active">All population</a>
+          <a href="#" id="year" class="Button button2">Population by High Education Level (%)</a>
+        </div>
+        <div id="vis2"></div>
+      </div>
+  </div>
+
+  <div class="container2">
+      <div class="dashboard" id="dashboard1">
+          <h1>Indiana Map</h1>
+          <p class="content">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          </p>
+          <img src="./data/placeholder.jpg" class="placeholder" />
+        </div>
+  </div>
   </div>
 
   <script src="lib/d3.js"></script>
   <script src="src/tooltip.js"></script>
-  <script src="src/bubble_chart.js"></script>
+  <script src="src/bubble_chart_poverty.js"></script>
+  <script src="src/bubble_chart_education.js"></script>
+
 
   <!-- PLEASE REMOVE AFTER CLONING -->
   <script>
