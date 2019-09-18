@@ -11,13 +11,11 @@ a, a:visited, a:active {
   align-items: center;
 }
 .container1{
-  width:80%;
+  width:70%;
   display:flex;
   flex-direction:column
 }
 .container2{
-  width:100%;
-  border:1px solid red;
 }
 .placeholder{
   width: 520px;
@@ -84,4 +82,8 @@ a, a:visited, a:active {
 
 .footer {
   text-align: center;
+}
+#map {
+  height: 100vh;
+  width:32vw;
 }

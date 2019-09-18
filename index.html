@@ -35,9 +35,12 @@
       <div class="dashboard" id="dashboard1">
           <h1>Indiana Map</h1>
           <p class="content">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              Here in this page, two factors of poverty level and education attainment are measured in an interactive bubble diagram. The primary logic is to find suspicious target which may need attention. We use the ratio of poverty population times the ratio of high educated population to get a distribution of the relevance for each county. The higher the more suspicious the county will be.
+              <br/>The tricky is that counties like Tippecanoe who is hosting many universities will be treated as suspicions subject that has both high ratio of educated people and high poverty level. We suggest the Census 2020 to specify the in school population and their attainment of education, in which could be deducted by total population of degree holder. That will diminish the affect of non-income students from the data base.
           </p>
-          <img src="./data/placeholder.jpg" class="placeholder" />
+          <!-- <img src="./data/placeholder.jpg" class="placeholder" /> -->
+          <div id="map"></div>
+       
         </div>
   </div>
   </div>
@@ -46,6 +49,10 @@
   <script src="src/tooltip.js"></script>
   <script src="src/bubble_chart_poverty.js"></script>
   <script src="src/bubble_chart_education.js"></script>
+  <script src="./src/googleMap.js"></script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-xLayYQMf5P6UMw2URnwPwxcPk_j9IYU&callback=initMap">
+  </script>
 
 
   <!-- PLEASE REMOVE AFTER CLONING -->
