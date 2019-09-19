@@ -1,4 +1,4 @@
-## Animated Bubble Chart
+## Bubble Map
 Indiana High Educational Status 
 All population Population by High Education Level (%)
 Indiana Map
