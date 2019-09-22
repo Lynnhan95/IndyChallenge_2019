@@ -6,7 +6,7 @@ Here in this page, two factors of poverty level and education attainment are mea
 The tricky is that counties like Tippecanoe who is hosting many universities will be treated as suspicions subject that has both high ratio of educated people and high poverty level. We suggest the Census 2020 to specify the in school population and their attainment of education, in which could be deducted by total population of degree holder. That will diminish the affect of non-income students from the database.
 
 ## Tools
-1.Numpy( in data analysis ) <br>
+1.Python( pandas in data analysis ) <br>
 2.D3.js <br>
 3.Google Map <br>
 4.Main data source: http://www.stats.indiana.edu/topic/census.asp <br>
